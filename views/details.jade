@@ -1,0 +1,62 @@
+p details.jade
+h1 #{title} #{IDevice}
+h2 Edit/Add Informations:
+form(method="post", action="/device/" + IDevice +"/save")
+  fieldset
+    legend General
+    p
+      select(name="type", size="4") 
+        option Tablets
+        option Phones 
+        option Modems 
+        option Accessoires
+        
+    p
+      label(for="model_name") Model Name:
+      input(id="model_name", value=device.model_name, name="model_name", placeholder="ex: iPhone 4 16GB black", maxlength="30", size="20", required="required")
+    p
+      label(for="descr") Description:
+      input(id="descr", value=device.descr, name="descr", maxlength="60", size="20")
+    p
+      label(for="serial_nr") Serial Number:
+      input(id="serial_nr", value=device.serial_nr, name="serial_nr", maxlength="20", size="20")
+    p
+      label(for="mac_addr") Mac Adress:
+      input(id="mac_addr", value=device.mac_addr, name="mac_addr", maxlength="20", size="20")
+    p
+      label(for="imei_nr") IMEI Nr:
+      input(id="imei_nr", value=device.imei_nr, name="imei_nr", maxlength="20", size="20")
+    p
+      label(for="os") OS Version:
+      input(id="os", value=device.os, placeholder="ex: Android 2.3.4", name="os", maxlength="20", size="20")
+    p
+      label(for="date_pur") Date of Purchase:
+      input(id="date_pur", value=device.date_pur, name="date_pur", maxlength="20", size="20")
+    p
+      label(for="price") Price:
+      input(id="price", value=device.price, name="price", maxlength="20", size="20")
+
+
+  p.buttons
+    input(type="submit", value="Save")
+
+
+form(action="/", method="GET")
+  input(type="submit", id="", value="Back")
+
+h2 History of Device:
+
+- if (devHis.length)
+  table(border='1')
+    thead
+      tr
+        th History ID
+        th Lender
+    tbody
+      tr    
+        for device in devHis
+          tr
+            td=device.vid
+            td=device.shname
+- else
+  p No History of this device available

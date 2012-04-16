@@ -1,0 +1,15 @@
+Database test: statements:
+
+CREATE TABLE der_geraet (
+			id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			model_name VARCHAR(100), 
+			descr VARCHAR(100), 
+			serial_nr VARCHAR(100), 
+			mac_addr VARCHAR(100), 
+			imei_nr VARCHAR(100), 
+			os VARCHAR(100), 
+			responsible VARCHAR(100), 
+			date_pur VARCHAR(100), 
+			warranty VARCHAR(100), 
+			lender VARCHAR(100)
+       );

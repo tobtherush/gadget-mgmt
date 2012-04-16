@@ -1,0 +1,32 @@
+create table  verleihung
+(
+vid INTEGER  NOT NULL auto_increment,
+pid INTEGER  NOT NULL,
+devid INTEGER  NOT NULL,
+from_date date,
+bis_date date,
+foreign key (devid) references der_geraet(id),
+foreign key (pid) references person(pid),
+unique (vid)
+);
+
+CREATE TABLE `person` (
+ `pid` int(10) NOT NULL AUTO_INCREMENT,
+ `shname` varchar(20) DEFAULT NULL,
+ PRIMARY KEY (`pid`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1
+
+	CREATE TABLE `der_geraet` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `model_name` varchar(100) DEFAULT NULL,
+ `descr` varchar(100) DEFAULT NULL,
+ `serial_nr` varchar(100) DEFAULT NULL,
+ `mac_addr` varchar(100) DEFAULT NULL,
+ `imei_nr` varchar(100) DEFAULT NULL,
+ `os` varchar(100) DEFAULT NULL,
+ `date_pur` varchar(100) DEFAULT NULL,
+ `price` varchar(100) DEFAULT NULL,
+ `lender` varchar(100) DEFAULT NULL,
+ `category` varchar(20) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1

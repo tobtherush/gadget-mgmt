@@ -1,0 +1,101 @@
+p overview.jade
+
+
+#info=info
+
+h1 Overview #{title} #{IDevice}
+
+h2 Add new Gadget
+p
+form(method="post", action="/device/saveNewDev")
+  fieldset
+    
+    input(id="model_name", value="", name="model_name", placeholder="Model Name", maxlength="30", size="12", required="required")
+    input(id="descr", value="", name="descr", placeholder="Description", maxlength="60", size="12")
+    input(id="serial_nr", value="", name="serial_nr", placeholder="Serial Nr.", maxlength="20", size="12")
+    input(id="mac_addr", value="", name="mac_addr", placeholder="Mac Address", maxlength="20", size="12")
+    input(id="imei_nr", value="", name="imei_nr", placeholder="IMEI Nr.", maxlength="20", size="12")
+    input(id="os", value="", name="os", placeholder="OS Version", maxlength="20", size="12")
+    input(id="date_pur", value="", name="date_pur", placeholder="Date of purchase", maxlength="20", size="12")
+    input(id="price", value="", name="price", placeholder="Price", maxlength="20", size="12")
+    input(id="lender", value="", name="lender", placeholder="Actual Lender", maxlength="20", size="12")
+
+    p.buttons
+    input(type="submit", value="Save")
+
+form(action="/", method="GET")
+  
+
+h2 Available Gadgets
+p 
+
+- if (dev_available.length)
+  table(border='1')
+    thead
+      tr
+        th ID
+        th Name
+        th Description
+        th SNr.
+        th Mac Addr.
+        th IMEI Nr.
+        th Os Version
+        th Date of purchase
+        th Price
+        th Actual Lender
+    tbody
+      tr    
+        for device in dev_available      
+          tr
+            td 
+              a(href="/device/" + device.id + "/edit")= device.id
+            td=device.model_name
+            td=device.descr
+            td=device.serial_nr
+            td=device.mac_addr
+            td=device.imei_nr
+            td=device.os
+            td=device.date_pur
+            td=device.price
+            td
+              form(method="post", action="/device/" + device.id + "/take")
+                input(id="lender", value="", name="lender", placeholder="your name..", maxlength="20", size="12")
+              
+- else
+  p No gadgets available
+h2 Lended Gadgets
+
+- if (dev_lended.length)
+  table(border='1')
+    thead
+      tr
+        th ID
+        th Name
+        th Description
+        th SNr.
+        th Mac Addr.
+        th IMEI Nr.
+        th Os Version
+        th Date of purchase
+        th Price
+        th Actual Lender
+        th Bring it Back
+    tbody
+      tr    
+        for device in dev_lended  
+          tr
+            td 
+              a(href="/device/" + device.id + "/edit")= device.id
+            td=device.model_name
+            td=device.descr
+            td=device.serial_nr
+            td=device.mac_addr
+            td=device.imei_nr
+            td=device.os
+            td=device.date_pur
+            td=device.price
+            td=device.lender
+            td
+              a(href="/device/" + device.id + "/devBack") back
+- else
+  p No Gadgets are lended at the moment
